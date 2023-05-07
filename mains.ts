@@ -1,15 +1,15 @@
-import {FootballTeamManager} from "./FootballTeamManager/FootballTeamManager";
-import {ManagerCoachMenu} from "../Menu/ManagerCoachMenu";
-import {ManagerPlayerMenu} from "../Menu/ManagerPlayerMenu";
-import {Player} from "./Model/Player";
-import {Coach} from "./Model/Coach";
+import {FootballTeamManager} from "./src/FootballTeamManager/FootballTeamManager";
+import {ManagerCoachMenu} from "./src/Menu/ManagerCoachMenu";
+import {ManagerPlayerMenu} from "./src/Menu/ManagerPlayerMenu";
+import {Player} from "./src/Model/Player";
+import {Coach} from "./src/Model/Coach";
 
 export const readlineSync = require('readline-sync');
 export const team = new FootballTeamManager('real')
 team.addPlayer(new Player("1", "Ronaldo", 39, "Bo dao nha", 90000, "ST", 6, 50, 1))
 team.addPlayer(new Player("2", "Messi", 35, "Ac hen ti na", 50000, "RW", 50, 30, 4))
 team.addPlayer(new Player("3", "Alison", 30, "Brazil", 40000, "GK", 49, 0, 5))
-team.addCoach(new Coach("4", "Tuchel", 55, "Duc", 200000, 100, 1, 50));
+team.addCoach(new Coach("4", "Tuchel", 55, "Duc", 150000, 100, 0, 50));
 team.addCoach(new Coach("5", "Pep", 60, "Tay ban nha", 100000, 30, 4, 60));
 
 function init() {

@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.team = exports.readlineSync = void 0;
-var FootballTeamManager_1 = require("./FootballTeamManager/FootballTeamManager");
-var ManagerCoachMenu_1 = require("../Menu/ManagerCoachMenu");
-var ManagerPlayerMenu_1 = require("../Menu/ManagerPlayerMenu");
-var Player_1 = require("./Model/Player");
-var Coach_1 = require("./Model/Coach");
+var FootballTeamManager_1 = require("./src/FootballTeamManager/FootballTeamManager");
+var ManagerCoachMenu_1 = require("./src/Menu/ManagerCoachMenu");
+var ManagerPlayerMenu_1 = require("./src/Menu/ManagerPlayerMenu");
+var Player_1 = require("./src/Model/Player");
+var Coach_1 = require("./src/Model/Coach");
 exports.readlineSync = require('readline-sync');
 exports.team = new FootballTeamManager_1.FootballTeamManager('real');
 exports.team.addPlayer(new Player_1.Player("1", "Ronaldo", 39, "Bo dao nha", 90000, "ST", 6, 50, 1));
 exports.team.addPlayer(new Player_1.Player("2", "Messi", 35, "Ac hen ti na", 50000, "RW", 50, 30, 4));
 exports.team.addPlayer(new Player_1.Player("3", "Alison", 30, "Brazil", 40000, "GK", 49, 0, 5));
-exports.team.addCoach(new Coach_1.Coach("4", "Tuchel", 55, "Duc", 200000, 100, 1, 50));
+exports.team.addCoach(new Coach_1.Coach("4", "Tuchel", 55, "Duc", 150000, 100, 0, 50));
 exports.team.addCoach(new Coach_1.Coach("5", "Pep", 60, "Tay ban nha", 100000, 30, 4, 60));
 function init() {
     var mainMenu = [

@@ -1,7 +1,7 @@
-import {readlineSync, team} from "../src/mains";
-import {NameOrNnationalityRegex, NumberRegex} from "../src/Regex/RegexName";
-import {Player} from "../src/Model/Player";
-import {Coach} from "../src/Model/Coach";
+import {readlineSync, team} from "../../mains";
+import {NameOrNnationalityRegex, NumberRegex} from "../Regex/RegexName";
+import {Player} from "../Model/Player";
+import {Coach} from "../Model/Coach";
 
 
 export class ManagerPlayerMenu {

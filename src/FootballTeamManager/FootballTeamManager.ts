@@ -84,9 +84,9 @@ export class FootballTeamManager {
     caculateCoachSalary(coach: Coach) {
         let salary = 0;
         if (coach.getWinMatch() >= 50) {
-            salary = coach.getWinMatch() + coach.getSalary() * 0.5
+            salary = coach.getSalary() + coach.getSalary() * 0.5
         } else if (coach.getWinMatch() >= 30) {
-            salary = coach.getWinMatch() + coach.getSalary() * 0.2
+            salary = coach.getSalary() + coach.getSalary() * 0.25
         } else {
             salary = coach.getSalary();
         }
@@ -94,15 +94,15 @@ export class FootballTeamManager {
     }
 
     bonusCoach(coach: Coach) {
-        let salary = 0;
+        let bonus = 0;
         if (coach.getNumberCup() >= 3) {
-            salary = coach.getSalary() * 2
-        } else if (coach.getNumberCup() < 1) {
-            salary = coach.getSalary()
+            bonus = coach.getSalary() * 2
+        } else if (coach.getNumberCup() >= 1) {
+            bonus = coach.getSalary()*0.5
         } else {
             console.log("Mua sau co gang nhe em")
         }
-        console.log(`Thuong cua HLV ${coach.getName()} la ${salary}$`)
+        console.log(`Thuong cua HLV ${coach.getName()} la ${bonus}$`)
     }
 }
 

@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ManagerPlayerMenu = void 0;
-var mains_1 = require("../src/mains");
-var RegexName_1 = require("../src/Regex/RegexName");
-var Player_1 = require("../src/Model/Player");
-var Coach_1 = require("../src/Model/Coach");
+var mains_1 = require("../../mains");
+var RegexName_1 = require("../Regex/RegexName");
+var Player_1 = require("../Model/Player");
+var Coach_1 = require("../Model/Coach");
 var ManagerPlayerMenu = /** @class */ (function () {
     function ManagerPlayerMenu() {
     }

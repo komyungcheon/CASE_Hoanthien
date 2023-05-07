@@ -73,10 +73,10 @@ var FootballTeamManager = /** @class */ (function () {
     FootballTeamManager.prototype.caculateCoachSalary = function (coach) {
         var salary = 0;
         if (coach.getWinMatch() >= 50) {
-            salary = coach.getWinMatch() + coach.getSalary() * 0.5;
+            salary = coach.getSalary() + coach.getSalary() * 0.5;
         }
         else if (coach.getWinMatch() >= 30) {
-            salary = coach.getWinMatch() + coach.getSalary() * 0.2;
+            salary = coach.getSalary() + coach.getSalary() * 0.25;
         }
         else {
             salary = coach.getSalary();
@@ -84,17 +84,17 @@ var FootballTeamManager = /** @class */ (function () {
         console.log("Luong cua HLV ".concat(coach.getName(), " la ").concat(salary, "$"));
     };
     FootballTeamManager.prototype.bonusCoach = function (coach) {
-        var salary = 0;
+        var bonus = 0;
         if (coach.getNumberCup() >= 3) {
-            salary = coach.getSalary() * 2;
+            bonus = coach.getSalary() * 2;
         }
-        else if (coach.getNumberCup() < 1) {
-            salary = coach.getSalary();
+        else if (coach.getNumberCup() >= 1) {
+            bonus = coach.getSalary() * 0.5;
         }
         else {
             console.log("Mua sau co gang nhe em");
         }
-        console.log("Thuong cua HLV ".concat(coach.getName(), " la ").concat(salary, "$"));
+        console.log("Thuong cua HLV ".concat(coach.getName(), " la ").concat(bonus, "$"));
     };
     return FootballTeamManager;
 }());
