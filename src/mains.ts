@@ -6,11 +6,12 @@ import {Coach} from "./Model/Coach";
 
 export const readlineSync = require('readline-sync');
 export const team = new FootballTeamManager('real')
-team.addPlayer(new Player("1","Ronaldo",39,"Bo dao nha",90000,"ST",100,50,3))
-team.addCoach(new Coach("5","Pep",60,"Tay ban nha",100000,30,4,60));
-team.addPlayer(new Player("2","Messi",35,"Ac hen ti na",50000,"RW",50,30,4))
-team.addPlayer(new Player("3","Allison",30,"Brazil",40000,"GK",49,0,5))
-team.addCoach(new Coach("4","Tuchel",55,"Duc",200000,100,1,50));
+team.addPlayer(new Player("1", "Ronaldo", 39, "Bo dao nha", 90000, "ST", 6, 50, 1))
+team.addPlayer(new Player("2", "Messi", 35, "Ac hen ti na", 50000, "RW", 50, 30, 4))
+team.addPlayer(new Player("3", "Alison", 30, "Brazil", 40000, "GK", 49, 0, 5))
+team.addCoach(new Coach("4", "Tuchel", 55, "Duc", 200000, 100, 1, 50));
+team.addCoach(new Coach("5", "Pep", 60, "Tay ban nha", 100000, 30, 4, 60));
+
 function init() {
     const mainMenu: string[] = [
         'Player Manager',
@@ -29,6 +30,7 @@ function init() {
                 break;
             case 2 :
                 console.table(team.getTeam());
+                break;
             default:
                 if (readlineSync.keyInYN('Xac nhan thoat chuong trinh:')) {
                     loop = false;
@@ -47,7 +49,7 @@ function menuCoachManager() {
         'deleteCoach',
         'showCoach',
         'lookingForCoachByName',
-        'salaryCalculatePlayer',
+        'salaryCalculateCoach',
         'bonusCoach'
     ]
     let loop = true;
@@ -74,6 +76,7 @@ function menuCoachManager() {
                 break;
             case 6 :
                 ManagerCoachMenu.bonusCoach();
+                break;
             default:
                 if (readlineSync.keyInYN('Xac nhan thoat chuong trinh:')) {
                     loop = false;
@@ -83,7 +86,6 @@ function menuCoachManager() {
 
     }
 }
-
 function menuPlayerManager() {
     const menuPlayer: string[] = [
         'addPlayer',
@@ -125,5 +127,4 @@ function menuPlayerManager() {
 
     }
 }
-
 init();

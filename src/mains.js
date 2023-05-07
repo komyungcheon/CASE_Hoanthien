@@ -8,11 +8,11 @@ var Player_1 = require("./Model/Player");
 var Coach_1 = require("./Model/Coach");
 exports.readlineSync = require('readline-sync');
 exports.team = new FootballTeamManager_1.FootballTeamManager('real');
-exports.team.addPlayer(new Player_1.Player("1", "Ronaldo", 39, "Bo dao nha", 90000, "ST", 100, 50, 3));
-exports.team.addCoach(new Coach_1.Coach("5", "Pep", 60, "Tay ban nha", 100000, 30, 4, 60));
+exports.team.addPlayer(new Player_1.Player("1", "Ronaldo", 39, "Bo dao nha", 90000, "ST", 6, 50, 1));
 exports.team.addPlayer(new Player_1.Player("2", "Messi", 35, "Ac hen ti na", 50000, "RW", 50, 30, 4));
-exports.team.addPlayer(new Player_1.Player("3", "Allison", 30, "Brazil", 40000, "GK", 49, 0, 5));
+exports.team.addPlayer(new Player_1.Player("3", "Alison", 30, "Brazil", 40000, "GK", 49, 0, 5));
 exports.team.addCoach(new Coach_1.Coach("4", "Tuchel", 55, "Duc", 200000, 100, 1, 50));
+exports.team.addCoach(new Coach_1.Coach("5", "Pep", 60, "Tay ban nha", 100000, 30, 4, 60));
 function init() {
     var mainMenu = [
         'Player Manager',
@@ -31,6 +31,7 @@ function init() {
                 break;
             case 2:
                 console.table(exports.team.getTeam());
+                break;
             default:
                 if (exports.readlineSync.keyInYN('Xac nhan thoat chuong trinh:')) {
                     loop = false;
@@ -46,7 +47,7 @@ function menuCoachManager() {
         'deleteCoach',
         'showCoach',
         'lookingForCoachByName',
-        'salaryCalculatePlayer',
+        'salaryCalculateCoach',
         'bonusCoach'
     ];
     var loop = true;
@@ -73,6 +74,7 @@ function menuCoachManager() {
                 break;
             case 6:
                 ManagerCoachMenu_1.ManagerCoachMenu.bonusCoach();
+                break;
             default:
                 if (exports.readlineSync.keyInYN('Xac nhan thoat chuong trinh:')) {
                     loop = false;

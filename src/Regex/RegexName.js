@@ -15,7 +15,7 @@ var NumberRegex = /** @class */ (function () {
     function NumberRegex() {
     }
     NumberRegex.validate = function (regex) {
-        var ID_REGEX = /^[1-9]\d*$/;
+        var ID_REGEX = /^[0-9]\d*$/;
         return ID_REGEX.test(regex);
     };
     return NumberRegex;

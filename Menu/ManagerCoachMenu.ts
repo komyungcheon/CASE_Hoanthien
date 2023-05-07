@@ -6,42 +6,42 @@ import {Player} from "../src/Model/Player";
 export class ManagerCoachMenu {
 
     static inputInfoCoach() {
-        let id = readlineSync.question('Nhap ID HLV:');
-        if (!NameOrNnationalityRegex.validate(id) || team.findIndexById(id) !== -1) {
-            console.log('ID khong hop le hoav da ton tai');
+        let id = readlineSync.question('Nhap ID HLV :');
+        if (!NumberRegex.validate(id) || team.findIndexById(id) !== -1) {
+            console.log('ID khong hop le hoac da ton tai,vui long nhap lai');
             return;
         }
-        let name = readlineSync.question('Nhap ten HLV: ');
+        let name = readlineSync.question('Nhap ten HLV:');
         if (!NameOrNnationalityRegex.validate(name)) {
             console.log('Ten khong hop le!');
             return;
         }
-        let age = readlineSync.question("Nhap tuoi HLV");
+        let age = readlineSync.question("Nhap tuoi HLV:");
         if (!NumberRegex.validate(age)) {
             console.log("Tuoi khong hop le !")
             return;
         }
-        let nationality = readlineSync.question('Nhap quoc tich cua HLV: ');
+        let nationality = readlineSync.question('Nhap quoc tich cua HLV:');
         if (!NameOrNnationalityRegex.validate(nationality)) {
             console.log('Quoc tich khong hop le!');
             return;
         }
-        let salary = readlineSync.question("Nhap luong cua HLV")
+        let salary = readlineSync.question("Nhap luong cua HLV:")
         if (!NumberRegex.validate(salary)) {
             console.log("Luong khong hop le !Vui long nhap lai")
             return;
         }
-        let numberOfMatches = readlineSync.question("Nhap so tran da dan dat cua HLV")
+        let numberOfMatches = readlineSync.question("Nhap so tran da dan dat cua HLV:")
         if (!NumberRegex.validate(numberOfMatches)) {
             console.log("So tran k dung !Vui long nhap lai")
             return;
         }
-        let numberCup = readlineSync.question("Nhap cup da danh duoc cua HLV")
+        let numberCup = readlineSync.question("Nhap cup da danh duoc cua HLV:")
         if (!NumberRegex.validate(numberCup)) {
             console.log("So cup k dung !Vui long nhap lai")
             return;
         }
-        let winMatch = readlineSync.question("Nhap so tran thang da dan dat cua HLV")
+        let winMatch = readlineSync.question("Nhap so tran thang da dan dat cua HLV:")
             if (!NumberRegex.validate(winMatch)) {
                 console.log("So tran thang khong dung !Vui long nhap lai")
                 return;
@@ -69,12 +69,14 @@ export class ManagerCoachMenu {
     static updateCoach(){
         let id = readlineSync.question('Nhap ID HLV muon cap nhat: ');
         let indexOfCoach = team.findIndexById(id);
-        if (indexOfCoach === -1) {
-            console.log('Khong tim thay HLV!');
+        if (indexOfCoach === -1 || team.getTeam()[indexOfCoach] instanceof Player) {
+            console.log('id nhap vao khong phai cua bat ki HLV nao!');
             return;
         }
         let coachUpdate = this.inputInfoCoach();
-        team.updateCoach(indexOfCoach, coachUpdate);
+        if (coachUpdate) {
+            team.updateCoach(indexOfCoach, coachUpdate);
+        }
     }
 
     static deleteCoach() {

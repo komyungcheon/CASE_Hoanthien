@@ -37,22 +37,13 @@ export class FootballTeamManager {
     }
 
     updatePlayer(index: number, player: Player): void {
-        if (this.team[index] instanceof Player) {
-            this.team[index] = player;
-            console.log('Update cau thu thanh cong!');
-
-            return;
-        }
-        console.log('ID nhap vao khong phai la cau thu!');
+        this.team[index] = player;
+        console.log('Update cau thu thanh cong!');
     }
 
     updateCoach(index: number, coach: Coach): void {
-        if (this.team[index] instanceof Coach) {
-            this.team[index] = coach;
-            console.log('Update HLV thanh cong!');
-            return;
-        }
-        console.log('ID nhap vao khong phai la HLV!');
+        this.team[index] = coach;
+        console.log('Update HLV thanh cong!');
     }
 
     deletePlayer(index): void {
@@ -86,8 +77,8 @@ export class FootballTeamManager {
         } else {
             salary = player.getSalary() * 5 / 100;
         }
-        let error = player.getError() * 3 / 100;
-        console.log(`Luong cua cau thu ${player.getName()} la ${salary - error}$`);
+        let error = (player.getError() * 3 / 100) * player.getSalary();
+        console.log(`Luong thuc nhan cua cau thu ${player.getName()} la ${salary - error}$`);
     }
 
     caculateCoachSalary(coach: Coach) {
@@ -96,22 +87,22 @@ export class FootballTeamManager {
             salary = coach.getWinMatch() + coach.getSalary() * 0.5
         } else if (coach.getWinMatch() >= 30) {
             salary = coach.getWinMatch() + coach.getSalary() * 0.2
-        }else {
+        } else {
             salary = coach.getSalary();
         }
-        console.log(`Luong cua HLV ${coach.getName() }la ${salary}$`)
+        console.log(`Luong cua HLV ${coach.getName()} la ${salary}$`)
     }
 
-    bonusCoach(coach : Coach){
+    bonusCoach(coach: Coach) {
         let salary = 0;
-        if(coach.getNumberCup()>=3){
-            salary = coach.getSalary()*2
-        }else if(coach.getNumberCup()<3){
+        if (coach.getNumberCup() >= 3) {
+            salary = coach.getSalary() * 2
+        } else if (coach.getNumberCup() < 1) {
             salary = coach.getSalary()
-        }else {
+        } else {
             console.log("Mua sau co gang nhe em")
         }
-        console.log(`Thuong cua HLV la ${coach.getName()} la ${salary}$`)
+        console.log(`Thuong cua HLV ${coach.getName()} la ${salary}$`)
     }
 }
 

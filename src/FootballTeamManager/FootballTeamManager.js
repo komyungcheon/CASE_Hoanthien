@@ -27,20 +27,12 @@ var FootballTeamManager = /** @class */ (function () {
         return this.team.findIndex(function (item) { return item.getId() === id; });
     };
     FootballTeamManager.prototype.updatePlayer = function (index, player) {
-        if (this.team[index] instanceof Player_1.Player) {
-            this.team[index] = player;
-            console.log('Update cau thu thanh cong!');
-            return;
-        }
-        console.log('ID nhap vao khong phai la cau thu!');
+        this.team[index] = player;
+        console.log('Update cau thu thanh cong!');
     };
     FootballTeamManager.prototype.updateCoach = function (index, coach) {
-        if (this.team[index] instanceof Coach_1.Coach) {
-            this.team[index] = coach;
-            console.log('Update HLV thanh cong!');
-            return;
-        }
-        console.log('ID nhap vao khong phai la HLV!');
+        this.team[index] = coach;
+        console.log('Update HLV thanh cong!');
     };
     FootballTeamManager.prototype.deletePlayer = function (index) {
         if (this.team[index] instanceof Player_1.Player) {
@@ -75,8 +67,8 @@ var FootballTeamManager = /** @class */ (function () {
         else {
             salary = player.getSalary() * 5 / 100;
         }
-        var error = player.getError() * 3 / 100;
-        console.log("Luong cua cau thu ".concat(player.getName(), " la ").concat(salary - error, "$"));
+        var error = (player.getError() * 3 / 100) * player.getSalary();
+        console.log("Luong thuc nhan cua cau thu ".concat(player.getName(), " la ").concat(salary - error, "$"));
     };
     FootballTeamManager.prototype.caculateCoachSalary = function (coach) {
         var salary = 0;
@@ -89,20 +81,20 @@ var FootballTeamManager = /** @class */ (function () {
         else {
             salary = coach.getSalary();
         }
-        console.log("Luong cua HLV ".concat(coach.getName(), "la ").concat(salary, "$"));
+        console.log("Luong cua HLV ".concat(coach.getName(), " la ").concat(salary, "$"));
     };
     FootballTeamManager.prototype.bonusCoach = function (coach) {
         var salary = 0;
         if (coach.getNumberCup() >= 3) {
             salary = coach.getSalary() * 2;
         }
-        else if (coach.getNumberCup() < 3) {
+        else if (coach.getNumberCup() < 1) {
             salary = coach.getSalary();
         }
         else {
             console.log("Mua sau co gang nhe em");
         }
-        console.log("Thuong cua HLV la ".concat(coach.getName(), " la ").concat(salary, "$"));
+        console.log("Thuong cua HLV ".concat(coach.getName(), " la ").concat(salary, "$"));
     };
     return FootballTeamManager;
 }());

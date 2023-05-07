@@ -6,7 +6,7 @@ export class NameOrNnationalityRegex {
 }
 export class NumberRegex {
     static validate(regex: string): boolean {
-        let ID_REGEX = /^[1-9]\d*$/;
+        let ID_REGEX = /^[0-9]\d*$/;
         return  ID_REGEX.test(regex);
     }
 }

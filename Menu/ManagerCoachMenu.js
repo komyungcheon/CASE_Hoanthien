@@ -4,46 +4,47 @@ exports.ManagerCoachMenu = void 0;
 var mains_1 = require("../src/mains");
 var RegexName_1 = require("../src/Regex/RegexName");
 var Coach_1 = require("../src/Model/Coach");
+var Player_1 = require("../src/Model/Player");
 var ManagerCoachMenu = /** @class */ (function () {
     function ManagerCoachMenu() {
     }
     ManagerCoachMenu.inputInfoCoach = function () {
-        var id = mains_1.readlineSync.question('Nhap ID HLV:');
-        if (!RegexName_1.NameOrNnationalityRegex.validate(id) || mains_1.team.findIndexById(id) !== -1) {
-            console.log('ID khong hop le hoav da ton tai');
+        var id = mains_1.readlineSync.question('Nhap ID HLV :');
+        if (!RegexName_1.NumberRegex.validate(id) || mains_1.team.findIndexById(id) !== -1) {
+            console.log('ID khong hop le hoac da ton tai,vui long nhap lai');
             return;
         }
-        var name = mains_1.readlineSync.question('Nhap ten HLV: ');
+        var name = mains_1.readlineSync.question('Nhap ten HLV:');
         if (!RegexName_1.NameOrNnationalityRegex.validate(name)) {
             console.log('Ten khong hop le!');
             return;
         }
-        var age = mains_1.readlineSync.question("Nhap tuoi HLV");
+        var age = mains_1.readlineSync.question("Nhap tuoi HLV:");
         if (!RegexName_1.NumberRegex.validate(age)) {
             console.log("Tuoi khong hop le !");
             return;
         }
-        var nationality = mains_1.readlineSync.question('Nhap quoc tich cua HLV: ');
+        var nationality = mains_1.readlineSync.question('Nhap quoc tich cua HLV:');
         if (!RegexName_1.NameOrNnationalityRegex.validate(nationality)) {
             console.log('Quoc tich khong hop le!');
             return;
         }
-        var salary = mains_1.readlineSync.question("Nhap luong cua HLV");
+        var salary = mains_1.readlineSync.question("Nhap luong cua HLV:");
         if (!RegexName_1.NumberRegex.validate(salary)) {
             console.log("Luong khong hop le !Vui long nhap lai");
             return;
         }
-        var numberOfMatches = mains_1.readlineSync.question("Nhap so tran da dan dat cua HLV");
+        var numberOfMatches = mains_1.readlineSync.question("Nhap so tran da dan dat cua HLV:");
         if (!RegexName_1.NumberRegex.validate(numberOfMatches)) {
             console.log("So tran k dung !Vui long nhap lai");
             return;
         }
-        var numberCup = mains_1.readlineSync.question("Nhap cup da danh duoc cua HLV");
+        var numberCup = mains_1.readlineSync.question("Nhap cup da danh duoc cua HLV:");
         if (!RegexName_1.NumberRegex.validate(numberCup)) {
             console.log("So cup k dung !Vui long nhap lai");
             return;
         }
-        var winMatch = mains_1.readlineSync.question("Nhap so tran thang da dan dat cua HLV");
+        var winMatch = mains_1.readlineSync.question("Nhap so tran thang da dan dat cua HLV:");
         if (!RegexName_1.NumberRegex.validate(winMatch)) {
             console.log("So tran thang khong dung !Vui long nhap lai");
             return;
@@ -60,12 +61,14 @@ var ManagerCoachMenu = /** @class */ (function () {
     ManagerCoachMenu.updateCoach = function () {
         var id = mains_1.readlineSync.question('Nhap ID HLV muon cap nhat: ');
         var indexOfCoach = mains_1.team.findIndexById(id);
-        if (indexOfCoach === -1) {
-            console.log('Khong tim thay HLV!');
+        if (indexOfCoach === -1 || mains_1.team.getTeam()[indexOfCoach] instanceof Player_1.Player) {
+            console.log('id nhap vao khong phai cua bat ki HLV nao!');
             return;
         }
         var coachUpdate = this.inputInfoCoach();
-        mains_1.team.updateCoach(indexOfCoach, coachUpdate);
+        if (coachUpdate) {
+            mains_1.team.updateCoach(indexOfCoach, coachUpdate);
+        }
     };
     ManagerCoachMenu.deleteCoach = function () {
         var id = mains_1.readlineSync.question('Nhap ID HLV muon xoa: ');

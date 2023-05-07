@@ -4,6 +4,7 @@ exports.ManagerPlayerMenu = void 0;
 var mains_1 = require("../src/mains");
 var RegexName_1 = require("../src/Regex/RegexName");
 var Player_1 = require("../src/Model/Player");
+var Coach_1 = require("../src/Model/Coach");
 var ManagerPlayerMenu = /** @class */ (function () {
     function ManagerPlayerMenu() {
     }
@@ -64,12 +65,14 @@ var ManagerPlayerMenu = /** @class */ (function () {
     ManagerPlayerMenu.updatePlayer = function () {
         var id = mains_1.readlineSync.question('Nhap ID cau thu muon cap nhat: ');
         var indexOfPlayer = mains_1.team.findIndexById(id);
-        if (indexOfPlayer === -1) {
-            console.log('Khong tim thay cau thu!');
+        if (indexOfPlayer === -1 || mains_1.team.getTeam()[indexOfPlayer] instanceof Coach_1.Coach) {
+            console.log('id nhap vao khong phai cua bat ki cau thu nao!');
             return;
         }
         var playerUpdate = this.inputInfoPlayer();
-        mains_1.team.updatePlayer(indexOfPlayer, playerUpdate);
+        if (playerUpdate) {
+            mains_1.team.updatePlayer(indexOfPlayer, playerUpdate);
+        }
     };
     ManagerPlayerMenu.deletePlayer = function () {
         var id = mains_1.readlineSync.question('Nhap ID cau thu muon xoa: ');
@@ -84,7 +87,7 @@ var ManagerPlayerMenu = /** @class */ (function () {
         console.table(mains_1.team.getPlayers());
     };
     ManagerPlayerMenu.lookingForPlayerByName = function () {
-        var name = mains_1.readlineSync.question('Nhap vao ten: ');
+        var name = mains_1.readlineSync.question('Nhap vao ten cau thu muon tim kiem: ');
         var players = [];
         mains_1.team.getPlayers().forEach(function (item) {
             if (item.getName().toLowerCase().includes(name.toLowerCase())) {

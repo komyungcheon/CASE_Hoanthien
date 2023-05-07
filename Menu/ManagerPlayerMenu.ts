@@ -1,6 +1,7 @@
 import {readlineSync, team} from "../src/mains";
 import {NameOrNnationalityRegex, NumberRegex} from "../src/Regex/RegexName";
 import {Player} from "../src/Model/Player";
+import {Coach} from "../src/Model/Coach";
 
 
 export class ManagerPlayerMenu {
@@ -76,12 +77,14 @@ export class ManagerPlayerMenu {
     static updatePlayer() {
         let id = readlineSync.question('Nhap ID cau thu muon cap nhat: ');
         let indexOfPlayer = team.findIndexById(id);
-        if (indexOfPlayer === -1) {
-            console.log('Khong tim thay cau thu!');
+        if (indexOfPlayer === -1 || team.getTeam()[indexOfPlayer] instanceof Coach) {
+            console.log('id nhap vao khong phai cua bat ki cau thu nao!');
             return;
         }
         let playerUpdate = this.inputInfoPlayer();
-        team.updatePlayer(indexOfPlayer, playerUpdate);
+        if (playerUpdate) {
+            team.updatePlayer(indexOfPlayer, playerUpdate);
+        }
     }
 
     static deletePlayer() {
@@ -99,7 +102,7 @@ export class ManagerPlayerMenu {
     }
 
     static lookingForPlayerByName() {
-        let name = readlineSync.question('Nhap vao ten: ');
+        let name = readlineSync.question('Nhap vao ten cau thu muon tim kiem: ');
         let players = [];
         team.getPlayers().forEach(item => {
             if (item.getName().toLowerCase().includes(name.toLowerCase())) {
@@ -112,6 +115,7 @@ export class ManagerPlayerMenu {
         }
         console.table(players);
     }
+
     static caculatePlayerSalary() {
         let id = readlineSync.question('Nhap ID cau thu muon tinh luong:');
         let player = team.getPlayers().find(item => item.getId() === id) as Player;
